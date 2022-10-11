@@ -1,27 +1,44 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
+function renderLicenseBadge(license) {
+if (license==="MIT licesnse"){
+    return `[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)`
+} 
+if (license=== 'Apache license 2.0' )
+{return `[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)`
+}
+if ( license=== 'Boose software license 1.0'){
+    return `[![License](https://img.shields.io/badge/License-Boost_1.0-lightblue.svg)](https://www.boost.org/LICENSE_1_0.txt)`
+}
+else {return ''}
+}
 
-const generateReadme = ({title, description, Instalation, usage, contributing,test, github, emai, licens }) =>
+
+
+
+const generateReadme = ({title, description, Instalation, usage, contributing,test, github, email, license}) =>
 `# tiltle of project
 ${title}
+${renderLicenseBadge(license)}
+
 ## Desctiption 
 ${description}
 ## Installation
 ${Instalation}
 ## Usage
 ${usage}
-## License 
-${licens}
+## license
+${license}
 ## Contrubuting
 ${contributing}
 ## Test 
 ${test}
 ## Questions 
     If you have any questions, you can reach me at:
-    
-    [Github](${github})
-    [Emal](${emai})`
+   [email](${email}) 
+[github](http://github.com/${github})`
+
 
     inquirer
         .prompt([{
@@ -68,14 +85,14 @@ ${test}
             type:'list',
             name: 'license',
             message: 'choose your license',
-            choices: ['MIT licesnse', 'Apache license 2.0', 'Boose software license 1.0']
+            choices: ['MIT licesnse', 'Apache license 2.0', 'Boose software license 1.0', 'none']
         },
         ])
 .then((response)=> {
 const readmePagecontent = generateReadme(response);
 
 
-fs.writeFile('readme.md' , readmePagecontent, (err) => 
+fs.writeFile('readme5.md' , readmePagecontent, (err) => 
 err ? console.log(err): console.log (' Seccessfully created Readme.md file'));
 
 });
