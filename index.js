@@ -106,7 +106,7 @@ inquirer
         const readmePagecontent = generateReadme(response);
 
 
-        fs.writeFile('readme5.md', readmePagecontent, (err) =>
+        fs.writeFile('readme.md', readmePagecontent, (err) =>
             err ? console.log(err) : console.log(' Seccessfully created Readme.md file'));
 
     });
